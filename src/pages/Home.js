@@ -11,7 +11,6 @@ const Home = () => {
   const state = useSelector((state) => state);
   const navigation = useNavigation();
 
-  // console.log(state);
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetch("products.json")
@@ -21,6 +20,8 @@ const Home = () => {
   if (navigation.state === "loading") {
     return <h1 className="text-6xl">Loading...</h1>;
   }
+
+  console.log(state);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl gap-14 mx-auto my-10">
       {products.map((product) => (
