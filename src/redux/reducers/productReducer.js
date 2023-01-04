@@ -1,5 +1,7 @@
 // initial state
-export const initialState = {};
+export const initialState = { a: "hello" };
 
 // reducer function
-export const productReducer = (state = initialState, action) => {};
+export const productReducer = (state = initialState, action) => {
+  return state;
+};
