@@ -1,16 +1,21 @@
 import React from "react";
 import { BiListPlus } from "react-icons/bi";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { ADD_TO_CART } from "../redux/actionTypes/actionTypes";
 import { addToCart } from "../redux/product-actions/productActions";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   return (
     <div
       className="shadow-lg rounded-3xl border  p-3 flex flex-col text-indigo-900"
       key={product._id}
     >
+      {pathname === "/cart" && (
+        <h1 className="text-2xl">Quantity:{product.quantity}</h1>
+      )}
       <div className="h-52 w-52 mx-auto">
         <img src={product.image} alt={product.model} />
       </div>
