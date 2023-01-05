@@ -26,12 +26,27 @@ export const productReducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        cart: [...state.cart, { ...action.payload, quantity: 1 }],
+        cart: [...state.cart, action.payload],
       };
     }
     case REMOVE_FROM_CART: {
       // something will happen if the case is remove from the cart
-      return {};
+      if (findExistingProduct) {
+        findExistingProduct.quantity = findExistingProduct.quantity - 1;
+        if (findExistingProduct.quantity === 0) {
+          const newCartWithOutSelectedProduct = state.cart.filter(
+            (product) => product._id !== findExistingProduct._id
+          );
+          return {
+            ...state,
+            cart: [...newCartWithOutSelectedProduct],
+          };
+        }
+      }
+      return {
+        ...state,
+        cart: [...state.cart],
+      };
     }
     default:
       return state;
